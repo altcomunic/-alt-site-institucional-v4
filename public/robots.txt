@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alt-site-institucional-v4.vercel.app/sitemap.xml
