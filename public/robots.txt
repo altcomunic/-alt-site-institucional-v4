@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /*?*
+Allow: /?utm_source=
+Allow: /?utm_medium=
+Allow: /?utm_campaign=
+
 Sitemap: https://alt-site-institucional-v4.vercel.app/sitemap.xml
