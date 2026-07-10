@@ -1,0 +1,217 @@
+/* ALT V4.2 — refinamento tipográfico */
+:root {
+  --type-display-xl: clamp(3.8rem, 6.4vw, 7.8rem);
+  --type-display-lg: clamp(3.2rem, 5.4vw, 6.4rem);
+  --type-display-md: clamp(2.55rem, 4.3vw, 4.9rem);
+  --type-heading-lg: clamp(2rem, 2.8vw, 3.4rem);
+  --type-body-lg: clamp(1.05rem, 1.2vw, 1.35rem);
+  --type-body-md: clamp(.95rem, 1vw, 1.08rem);
+  --lh-tight: .88;
+  --lh-display: .92;
+  --lh-heading: .98;
+  --lh-body: 1.68;
+  --track-tight: -.065em;
+  --track-heading: -.052em;
+  --track-body: -.012em;
+  --track-label: .22em;
+}
+
+body {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+
+.eyebrow,
+.nav-links,
+.nav-cta,
+.btn,
+.module-card span,
+.module-card strong,
+.module-card small,
+.timeline-row span,
+.case-feature p,
+.blog-card span,
+.blog-card em,
+.blog-card a,
+.partner-card span,
+.legal a,
+.footer p,
+.trust span,
+.dash span,
+.hero-topics a {
+  font-weight: 500 !important;
+  letter-spacing: var(--track-label) !important;
+}
+
+.section-copy h2 {
+  font-size: var(--type-display-md) !important;
+  line-height: var(--lh-heading) !important;
+  letter-spacing: var(--track-heading) !important;
+  font-weight: 700 !important;
+  max-width: 1180px;
+}
+
+.section-lead,
+.hero-lead,
+.module-card p,
+.timeline-row p,
+.blog-card p,
+.partner-card p,
+.case-feature small,
+.modal-lead {
+  font-weight: 300 !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+}
+
+.hero h1 {
+  font-size: var(--type-display-lg) !important;
+  line-height: var(--lh-display) !important;
+  letter-spacing: -.072em !important;
+  font-weight: 800 !important;
+  max-width: 980px;
+}
+
+.hero h1 span {
+  font-weight: 900;
+}
+
+.hero-lead {
+  font-size: var(--type-body-lg) !important;
+  max-width: 640px;
+  margin-top: 34px !important;
+}
+
+.hero-actions {
+  margin-top: 42px !important;
+}
+
+.manifesto-flow {
+  gap: clamp(1.4rem, 2.2vw, 2.8rem) !important;
+}
+
+.manifesto h2 {
+  font-size: var(--type-display-xl) !important;
+  line-height: var(--lh-tight) !important;
+  letter-spacing: -.078em !important;
+  font-weight: 750 !important;
+}
+
+.module-card h3 {
+  font-size: clamp(2rem, 2.8vw, 3.5rem) !important;
+  line-height: .91 !important;
+  letter-spacing: -.06em !important;
+  font-weight: 750 !important;
+}
+
+.module-card strong {
+  margin-top: 22px !important;
+  color: rgba(255,255,255,.74) !important;
+}
+
+.module-card p {
+  font-size: .96rem !important;
+  margin-top: 8px;
+}
+
+.timeline-row {
+  padding: 34px 0 !important;
+}
+
+.timeline-row h3 {
+  font-size: clamp(2rem, 3vw, 3.8rem) !important;
+  line-height: .94 !important;
+  letter-spacing: -.06em !important;
+  font-weight: 700 !important;
+}
+
+.timeline-row p {
+  font-size: clamp(.98rem, 1vw, 1.12rem) !important;
+  margin-top: 14px !important;
+}
+
+.case-feature h3 {
+  font-size: clamp(3rem, 6vw, 6.8rem) !important;
+  line-height: .84 !important;
+  letter-spacing: -.074em !important;
+  font-weight: 750 !important;
+}
+
+.case-feature p {
+  color: rgba(255,255,255,.62) !important;
+  margin-bottom: 16px !important;
+}
+
+.case-feature small {
+  font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
+  max-width: 520px;
+}
+
+.cinema h2 {
+  font-size: var(--type-display-lg) !important;
+  line-height: .9 !important;
+  letter-spacing: -.074em !important;
+  font-weight: 750 !important;
+}
+
+.blog-card h3 {
+  font-size: clamp(1.45rem, 1.7vw, 2.15rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.05em !important;
+  font-weight: 650 !important;
+  text-transform: none !important;
+}
+
+.blog-card p {
+  font-size: 1rem !important;
+}
+
+.partner-card strong {
+  font-weight: 700 !important;
+  line-height: .9 !important;
+  letter-spacing: -.065em !important;
+}
+
+.modal-panel h2 {
+  font-size: var(--type-display-md) !important;
+  line-height: .9 !important;
+  letter-spacing: -.074em !important;
+  font-weight: 750 !important;
+}
+
+.modal-lead {
+  font-size: clamp(1.15rem, 1.5vw, 1.5rem) !important;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-weight: 300 !important;
+  letter-spacing: .01em !important;
+}
+
+.footer p {
+  font-weight: 600 !important;
+}
+
+@media (max-width: 720px) {
+  .hero h1 {
+    font-size: clamp(2.8rem, 13vw, 4.5rem) !important;
+    line-height: .94 !important;
+  }
+
+  .section-copy h2,
+  .cinema h2 {
+    font-size: clamp(2.35rem, 10vw, 4rem) !important;
+    line-height: .94 !important;
+  }
+
+  .manifesto h2 {
+    font-size: clamp(2.55rem, 12vw, 4.4rem) !important;
+    line-height: .9 !important;
+  }
+
+  .case-feature h3 {
+    font-size: clamp(2.8rem, 13vw, 4.8rem) !important;
+  }
+}
