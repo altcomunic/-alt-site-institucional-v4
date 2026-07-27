@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ExternalLink, Menu, X } from "lucide-react";
 
 const logo = "https://raw.githubusercontent.com/altcomunic/alt-site-institucional-v3/main/public/LOGO.svg";
-const formEndpoint = "https://script.google.com/macros/s/AKfycbznzRZUtxhncHDloFvd4pff1m2LE2VTvelFSFDUr16mS__wG1ngCaBwi50Petyl0KbJqQ/exec";
+const formEndpoint = "/api/kommo-lead";
 const heroVideo = "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
 const cinemaVideo = "https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4";
 
@@ -33,6 +33,22 @@ const posts = [
   ["CRM", "6 min", "CRM não vende sozinho. Processo vende.", "Como transformar contatos em oportunidades reais."],
   ["IA", "5 min", "IA só gera valor quando conecta dados, conteúdo e operação.", "O uso estratégico da inteligência artificial no marketing."]
 ];
+
+function getTrackingData() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_campaign: params.get("utm_campaign") || "",
+    utm_content: params.get("utm_content") || "",
+    utm_term: params.get("utm_term") || "",
+    gclid: params.get("gclid") || "",
+    fbclid: params.get("fbclid") || "",
+    utm_referrer: document.referrer || "",
+    referrer: window.location.href,
+  };
+}
 
 function Logo({ className = "" }) { return <img src={logo} alt="ALT Comunicação" className={className} />; }
 function Reveal({ children, delay = 0, className = "" }) { return <motion.div className={className} initial={{ opacity: 0, y: 32, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.22 }} transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>; }
@@ -91,6 +107,38 @@ function Cinematic() { return <section className="cinema section-block"><video a
 function Insights() { return <section id="insights" className="section-block insights-section"><div className="container"><SectionTitle eyebrow="05 — Leituras ALT" title="Pensamento estratégico para empresas em movimento." /><div className="blog-grid">{posts.map(([cat, time, title, desc], index) => <motion.article key={title} className="blog-card" data-cursor="Ler" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }}><div><span>{cat}</span><em>{time} de leitura</em></div><h3>{title}</h3><p>{desc}</p><a href="#insights">Ler artigo <ArrowRight size={14} /></a></motion.article>)}</div></div></section>; }
 function Partners() { return <section id="parceiros" className="section-block partners-section"><div className="container"><SectionTitle eyebrow="06 — Parceiros" title="Ecossistema tecnológico." text="As plataformas e parceiros que utilizamos para transformar estratégia em operação." /><div className="partner-grid"><a className="partner-card" href="https://www.kommo.com/br/" target="_blank" rel="noreferrer"><img src="/kommo-partner.svg" alt="Kommo Partner" /><p>CRM comercial, automação e pipeline.</p><span>Conhecer parceiro <ArrowRight size={14} /></span></a><a className="partner-card synapse" href="https://www.synapsestrateg.com" target="_blank" rel="noreferrer"><strong>Synapse</strong><p>IA aplicada, automações e treinamentos.</p><span>Conhecer parceiro <ArrowRight size={14} /></span></a></div></div></section>; }
 
-function Contact() { const [sending, setSending] = useState(false); const [form, setForm] = useState({ nome: "", empresa: "", email: "", whatsapp: "", dor: "" }); const update = (field, value) => setForm((prev) => ({ ...prev, [field]: value })); const submit = async (event) => { event.preventDefault(); setSending(true); try { await fetch(formEndpoint, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(form) }); alert("Diagnóstico recebido. Nossa equipe fará uma análise inicial e entrará em contato."); setForm({ nome: "", empresa: "", email: "", whatsapp: "", dor: "" }); } finally { setSending(false); } }; return <section id="diagnostico" className="section-block contact-section"><div className="container contact-grid"><div><SectionTitle eyebrow="07 — Diagnóstico" title="Vamos entender onde sua marca pode crescer." text="Poucas perguntas. Muito mais direção para o seu marketing." /><div className="trust"><span>Diagnóstico gratuito</span><span>Sem compromisso</span><span>Análise inicial</span></div></div><Reveal><form className="contact-form" onSubmit={submit}><input required placeholder="Nome" value={form.nome} onChange={(e) => update("nome", e.target.value)} /><input placeholder="Empresa" value={form.empresa} onChange={(e) => update("empresa", e.target.value)} /><input required type="email" placeholder="E-mail" value={form.email} onChange={(e) => update("email", e.target.value)} /><input required placeholder="WhatsApp" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} /><textarea placeholder="Maior desafio hoje" value={form.dor} onChange={(e) => update("dor", e.target.value)} /><button className="btn primary" disabled={sending}>{sending ? "Enviando..." : "Solicitar diagnóstico"}<ArrowRight size={16} /></button></form></Reveal></div></section>; }
+function Contact() {
+  const initialForm = { nome: "", empresa: "", email: "", whatsapp: "", dor: "", website: "" };
+  const [sending, setSending] = useState(false);
+  const [form, setForm] = useState(initialForm);
+  const [feedback, setFeedback] = useState({ type: "", message: "" });
+  const update = (field, value) => setForm((prev) => ({ ...prev, [field]: value }));
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setFeedback({ type: "", message: "" });
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, ...getTrackingData() }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.error || "Não foi possível enviar o diagnóstico.");
+
+      setForm(initialForm);
+      setFeedback({ type: "success", message: "Diagnóstico solicitado. Nossa equipe entrará em contato em breve." });
+    } catch (error) {
+      setFeedback({ type: "error", message: error.message || "Não foi possível enviar. Tente novamente." });
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return <section id="diagnostico" className="section-block contact-section"><div className="container contact-grid"><div><SectionTitle eyebrow="07 — Diagnóstico" title="Vamos entender onde sua marca pode crescer." text="Poucas perguntas. Muito mais direção para o seu marketing." /><div className="trust"><span>Diagnóstico gratuito</span><span>Sem compromisso</span><span>Análise inicial</span></div></div><Reveal><form className="contact-form" onSubmit={submit}><input required placeholder="Nome" value={form.nome} onChange={(e) => update("nome", e.target.value)} /><input placeholder="Empresa" value={form.empresa} onChange={(e) => update("empresa", e.target.value)} /><input required type="email" placeholder="E-mail" value={form.email} onChange={(e) => update("email", e.target.value)} /><input required placeholder="WhatsApp" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} /><textarea placeholder="Maior desafio hoje" value={form.dor} onChange={(e) => update("dor", e.target.value)} /><input tabIndex="-1" autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} value={form.website} onChange={(e) => update("website", e.target.value)} /><button className="btn primary" disabled={sending}>{sending ? "Enviando..." : "Solicitar diagnóstico"}<ArrowRight size={16} /></button>{feedback.message ? <p role="status" aria-live="polite" style={{ margin: 0, color: feedback.type === "success" ? "#8ee6a8" : "#ff9d9d", lineHeight: 1.5 }}>{feedback.message}</p> : null}</form></Reveal></div></section>;
+}
 function Footer() { return <footer className="footer"><div className="container footer-grid"><div><Logo className="footer-logo" /><p>Marketing sem achismo. Resultado que converte.</p><div className="legal"><a href="/politica-de-privacidade">Privacidade</a><a href="/termos-de-uso">Termos</a><a href="/politica-de-cookies">Cookies</a><a href="/lgpd">LGPD</a></div></div><nav className="socials"><a href={social.instagram} aria-label="Instagram">IG</a><a href={social.linkedin} aria-label="LinkedIn">IN</a><a href={social.youtube} aria-label="YouTube">YT</a><a href={social.google} aria-label="Google">G</a></nav></div></footer>; }
 export default function App() { const [loading, setLoading] = useState(true); const { scrollYProgress } = useScroll(); const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]); useEffect(() => { const timer = setTimeout(() => setLoading(false), 900); return () => clearTimeout(timer); }, []); return <div><motion.div className="scroll-progress" style={{ width }} /><SmartCursor />{loading ? <div className="loader"><Logo /></div> : null}<Navbar /><main><Hero /><Manifesto /><System /><Method /><Cases /><Cinematic /><Insights /><Partners /><Contact /></main><Footer /></div>; }
