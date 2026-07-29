@@ -1,19 +1,103 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Compass,
+  Database,
+  Handshake,
+  Menu,
+  PenSquare,
+  ScanSearch,
+  Shapes,
+  Target,
+  X,
+} from "lucide-react";
 
 const logo = "https://raw.githubusercontent.com/altcomunic/alt-site-institucional-v3/main/public/LOGO.svg";
 const heroVideo = "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
 
 const architecture = [
-  ["01", "Diagnóstico", "Entendemos o cenário antes de propor qualquer ação."],
-  ["02", "Estratégia", "Definimos prioridades, posicionamento e direção de crescimento."],
-  ["03", "Marca", "Aumentamos percepção, clareza e valor percebido."],
-  ["04", "Conteúdo", "Transformamos estratégia em narrativa, desejo e autoridade."],
-  ["05", "Aquisição", "Criamos demanda qualificada com mídia e canais adequados."],
-  ["06", "CRM", "Organizamos relacionamento, velocidade e acompanhamento comercial."],
-  ["07", "Comercial", "Conectamos oportunidade, abordagem, diagnóstico e proposta."],
-  ["08", "Receita", "Medimos o que realmente sustenta crescimento."],
+  {
+    number: "01",
+    title: "Diagnóstico",
+    text: "Identificamos os gargalos que impedem a empresa de crescer.",
+    result: "Prioridades definidas",
+    icon: ScanSearch,
+    objective: "Entender o cenário antes de propor qualquer ação.",
+    deliveries: ["Leitura do negócio", "Mapeamento de gargalos", "Análise de marketing e comercial", "Priorização de oportunidades"],
+    indicators: ["Clareza de cenário", "Velocidade de decisão", "Foco de execução"],
+  },
+  {
+    number: "02",
+    title: "Estratégia",
+    text: "Transformamos objetivos em um plano claro de crescimento.",
+    result: "Direção definida",
+    icon: Compass,
+    objective: "Definir onde concentrar esforço, investimento e energia.",
+    deliveries: ["Direcionamento estratégico", "Definição de prioridades", "Plano de ação", "Metas e responsáveis"],
+    indicators: ["Aderência ao plano", "Execução de prioridades", "Evolução dos objetivos"],
+  },
+  {
+    number: "03",
+    title: "Marca",
+    text: "Construímos posicionamentos que geram percepção e confiança.",
+    result: "Autoridade",
+    icon: Shapes,
+    objective: "Tornar a empresa mais clara, relevante e valorizada pelo mercado.",
+    deliveries: ["Posicionamento", "Narrativa", "Identidade", "Direção de comunicação"],
+    indicators: ["Percepção de valor", "Consistência", "Autoridade"],
+  },
+  {
+    number: "04",
+    title: "Conteúdo",
+    text: "Produzimos comunicação alinhada aos objetivos do negócio.",
+    result: "Relevância",
+    icon: PenSquare,
+    objective: "Transformar estratégia em comunicação capaz de educar, gerar desejo e apoiar vendas.",
+    deliveries: ["Planejamento editorial", "Direção criativa", "Produção de conteúdo", "Campanhas"],
+    indicators: ["Atenção qualificada", "Engajamento", "Demanda gerada"],
+  },
+  {
+    number: "05",
+    title: "Aquisição",
+    text: "Atraímos empresas com potencial para se tornarem clientes.",
+    result: "Oportunidades",
+    icon: Target,
+    objective: "Criar demanda qualificada por meio dos canais adequados.",
+    deliveries: ["Mídia paga", "Campanhas", "Landing pages", "Otimização de conversão"],
+    indicators: ["Leads qualificados", "Custo por oportunidade", "Taxa de conversão"],
+  },
+  {
+    number: "06",
+    title: "CRM",
+    text: "Estruturamos processos para acompanhar cada oportunidade.",
+    result: "Relacionamento",
+    icon: Database,
+    objective: "Organizar a jornada comercial para que oportunidades não se percam.",
+    deliveries: ["Pipeline", "Automações", "Integrações", "Follow-up"],
+    indicators: ["Tempo de resposta", "Conversão por etapa", "Receita no pipeline"],
+  },
+  {
+    number: "07",
+    title: "Comercial",
+    text: "Conectamos marketing ao processo de vendas.",
+    result: "Conversão",
+    icon: Handshake,
+    objective: "Transformar oportunidades em negociações conduzidas com método.",
+    deliveries: ["Processo comercial", "Critérios de qualificação", "Roteiros", "Gestão do funil"],
+    indicators: ["Taxa de qualificação", "Propostas enviadas", "Taxa de fechamento"],
+  },
+  {
+    number: "08",
+    title: "Dados",
+    text: "Monitoramos indicadores para orientar decisões.",
+    result: "Crescimento contínuo",
+    icon: BarChart3,
+    objective: "Usar dados para decidir o que manter, corrigir ou escalar.",
+    deliveries: ["Dashboards", "KPIs", "Relatórios", "Rituais de análise"],
+    indicators: ["Receita", "Eficiência", "Evolução do funil"],
+  },
 ];
 
 const cases = [
@@ -39,15 +123,18 @@ function Navbar() {
 }
 
 function Hero() {
-  return <section id="home" className="hero"><video className="hero-video" autoPlay muted loop playsInline><source src={heroVideo} type="video/mp4" /></video><div className="hero-overlay" /><div className="container hero-content"><Reveal><p className="eyebrow muted">Estratégia · Marca · Aquisição · Comercial</p><h1>Marketing sem achismo.<span>Resultado que converte.</span></h1><p className="hero-lead">Integramos estratégia, marca, conteúdo, mídia e processo comercial para transformar marketing em crescimento.</p><div className="hero-actions"><a className="btn primary" href="#diagnostico">Solicitar diagnóstico <ArrowRight size={16} /></a><a className="text-link" href="#arquitetura">Entender como fazemos <ArrowRight size={15} /></a></div></Reveal></div><div className="hero-index">ALT / 2026</div></section>;
+  return <section id="home" className="hero"><video className="hero-video" autoPlay muted loop playsInline><source src={heroVideo} type="video/mp4" /></video><div className="hero-overlay" /><div className="container hero-content"><Reveal><p className="eyebrow muted">Estratégia · Marketing · Comercial</p><h1>Empresas crescem<br />por decisão.<span>Não por postagem.</span></h1><p className="hero-lead">Integramos estratégia, marketing e processo comercial para transformar crescimento em um sistema.</p><div className="hero-actions"><a className="btn primary" href="#diagnostico">Solicitar diagnóstico <ArrowRight size={16} /></a><a className="text-link" href="#operacao">Conhecer a operação <ArrowRight size={15} /></a></div></Reveal></div><div className="hero-index">ALT / 2026</div></section>;
+}
+
+function ArchitectureModal({ item, onClose }) {
+  if (!item) return null;
+  const Icon = item.icon;
+  return <motion.div className="architecture-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><button className="architecture-modal-bg" onClick={onClose} aria-label="Fechar" /><motion.div className="architecture-modal-panel" initial={{ x: "100%" }} animate={{ x: 0 }} transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}><button className="architecture-modal-close" onClick={onClose} aria-label="Fechar"><X size={20} /></button><div className="architecture-modal-icon"><Icon size={30} strokeWidth={1.5} /></div><p className="eyebrow">Módulo {item.number}</p><h2>{item.title}</h2><p className="architecture-modal-lead">{item.objective}</p><div className="architecture-modal-columns"><div><h3>Entregas</h3>{item.deliveries.map((entry) => <span key={entry}>{entry}</span>)}</div><div><h3>Indicadores</h3>{item.indicators.map((entry) => <span key={entry}>{entry}</span>)}</div></div><a className="btn primary" href="#diagnostico" onClick={onClose}>Solicitar diagnóstico <ArrowRight size={16} /></a></motion.div></motion.div>;
 }
 
 function Architecture() {
-  return <section id="arquitetura" className="section architecture"><div className="container"><Reveal className="section-head"><p className="eyebrow">Arquitetura ALT</p><h2>Não entregamos peças soltas.<br />Construímos uma operação.</h2><p>O crescimento acontece quando marca, aquisição, relacionamento e comercial trabalham na mesma direção.</p></Reveal><div className="architecture-grid">{architecture.map(([number, title, text], index) => <Reveal key={title} delay={index * 0.035}><article className="architecture-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div></section>;
-}
-
-function Rhythm() {
-  return <section className="rhythm"><div className="container rhythm-list">{["Marca.", "Conteúdo.", "Aquisição.", "CRM.", "Comercial.", "Receita."].map((item, index) => <Reveal key={item} delay={index * 0.04}><h2 className={index === 5 ? "accent" : ""}>{item}</h2></Reveal>)}</div></section>;
+  const [active, setActive] = useState(null);
+  return <section id="arquitetura" className="section architecture"><div className="container"><Reveal className="section-head"><p className="eyebrow">Arquitetura ALT</p><h2>O crescimento acontece quando estratégia, marketing e comercial operam como um único sistema.</h2><p>A Arquitetura ALT integra todas as frentes responsáveis por transformar estratégia em oportunidades, relacionamento em conversão e marketing em crescimento.</p></Reveal><div className="architecture-grid">{architecture.map((item, index) => { const Icon = item.icon; return <Reveal key={item.title} delay={index * 0.035}><button className="architecture-card architecture-card-button" onClick={() => setActive(item)}><div className="architecture-card-top"><span>{item.number}</span><Icon size={28} strokeWidth={1.5} /></div><h3>{item.title}</h3><p>{item.text}</p><div className="architecture-card-result"><small>Resultado</small><strong>{item.result} <ArrowRight size={14} /></strong></div></button></Reveal>; })}</div></div><ArchitectureModal item={active} onClose={() => setActive(null)} /></section>;
 }
 
 function Cases() {
@@ -78,10 +165,10 @@ function Contact() {
 }
 
 function Footer() {
-  return <footer><div className="container footer-grid"><div><img src={logo} alt="ALT Comunicação" /><h2>Marketing sem achismo.<br />Resultado que converte.</h2></div><div className="footer-links"><a href="#arquitetura">Arquitetura</a><a href="#cases">Cases</a><a href="#operacao">Operação</a><a href="#diagnostico">Diagnóstico</a></div><div className="footer-partners"><span>Kommo Partner</span><span>Synapse</span><span>Meta</span><span>Google</span></div></div><div className="container footer-bottom"><span>© 2026 ALT Comunicação</span><span>Goiânia · GO</span></div></footer>;
+  return <footer className="footer-premium"><div className="container footer-main"><div className="footer-brand"><img src={logo} alt="ALT Comunicação" /><h2>Empresas crescem por decisão.<br /><span>Não por postagem.</span></h2><p>Integramos estratégia, marketing e processo comercial para transformar crescimento em um sistema.</p></div><div className="footer-column"><strong>Navegação</strong><a href="#arquitetura">Arquitetura ALT</a><a href="#cases">Cases</a><a href="#operacao">Operação</a><a href="#insights">Insights</a><a href="#diagnostico">Diagnóstico</a></div><div className="footer-column"><strong>Contato</strong><a href="#diagnostico">Solicitar diagnóstico</a><a href="https://www.instagram.com/alt.comunic/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.linkedin.com/company/alt-comunic/" target="_blank" rel="noreferrer">LinkedIn</a><span>Goiânia · GO</span></div><div className="footer-column footer-ecosystem"><strong>Ecossistema ALT</strong><span>Kommo Partner</span><span>Synapse</span><span>Meta</span><span>Google</span><p>Uma operação integrada para empresas que decidiram crescer.</p></div></div><div className="container footer-bottom"><span>© 2026 ALT Comunicação</span><span>Diagnóstico. Estratégia. Execução. Crescimento.</span></div></footer>;
 }
 
 export default function App() {
   useEffect(() => { document.documentElement.style.scrollBehavior = "smooth"; }, []);
-  return <><Navbar /><main><Hero /><Architecture /><Rhythm /><Cases /><Operation /><Insights /><Contact /></main><Footer /></>;
+  return <><Navbar /><main><Hero /><Architecture /><Cases /><Operation /><Insights /><Contact /></main><Footer /></>;
 }
