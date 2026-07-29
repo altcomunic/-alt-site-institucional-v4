@@ -18,86 +18,14 @@ const logo = "https://raw.githubusercontent.com/altcomunic/alt-site-instituciona
 const heroVideo = "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
 
 const architecture = [
-  {
-    number: "01",
-    title: "Diagnóstico",
-    text: "Identificamos os gargalos que impedem a empresa de crescer.",
-    result: "Prioridades definidas",
-    icon: ScanSearch,
-    objective: "Entender o cenário antes de propor qualquer ação.",
-    deliveries: ["Leitura do negócio", "Mapeamento de gargalos", "Análise de marketing e comercial", "Priorização de oportunidades"],
-    indicators: ["Clareza de cenário", "Velocidade de decisão", "Foco de execução"],
-  },
-  {
-    number: "02",
-    title: "Estratégia",
-    text: "Transformamos objetivos em um plano claro de crescimento.",
-    result: "Direção definida",
-    icon: Compass,
-    objective: "Definir onde concentrar esforço, investimento e energia.",
-    deliveries: ["Direcionamento estratégico", "Definição de prioridades", "Plano de ação", "Metas e responsáveis"],
-    indicators: ["Aderência ao plano", "Execução de prioridades", "Evolução dos objetivos"],
-  },
-  {
-    number: "03",
-    title: "Marca",
-    text: "Construímos posicionamentos que geram percepção e confiança.",
-    result: "Autoridade",
-    icon: Shapes,
-    objective: "Tornar a empresa mais clara, relevante e valorizada pelo mercado.",
-    deliveries: ["Posicionamento", "Narrativa", "Identidade", "Direção de comunicação"],
-    indicators: ["Percepção de valor", "Consistência", "Autoridade"],
-  },
-  {
-    number: "04",
-    title: "Conteúdo",
-    text: "Produzimos comunicação alinhada aos objetivos do negócio.",
-    result: "Relevância",
-    icon: PenSquare,
-    objective: "Transformar estratégia em comunicação capaz de educar, gerar desejo e apoiar vendas.",
-    deliveries: ["Planejamento editorial", "Direção criativa", "Produção de conteúdo", "Campanhas"],
-    indicators: ["Atenção qualificada", "Engajamento", "Demanda gerada"],
-  },
-  {
-    number: "05",
-    title: "Aquisição",
-    text: "Atraímos empresas com potencial para se tornarem clientes.",
-    result: "Oportunidades",
-    icon: Target,
-    objective: "Criar demanda qualificada por meio dos canais adequados.",
-    deliveries: ["Mídia paga", "Campanhas", "Landing pages", "Otimização de conversão"],
-    indicators: ["Leads qualificados", "Custo por oportunidade", "Taxa de conversão"],
-  },
-  {
-    number: "06",
-    title: "CRM",
-    text: "Estruturamos processos para acompanhar cada oportunidade.",
-    result: "Relacionamento",
-    icon: Database,
-    objective: "Organizar a jornada comercial para que oportunidades não se percam.",
-    deliveries: ["Pipeline", "Automações", "Integrações", "Follow-up"],
-    indicators: ["Tempo de resposta", "Conversão por etapa", "Receita no pipeline"],
-  },
-  {
-    number: "07",
-    title: "Comercial",
-    text: "Conectamos marketing ao processo de vendas.",
-    result: "Conversão",
-    icon: Handshake,
-    objective: "Transformar oportunidades em negociações conduzidas com método.",
-    deliveries: ["Processo comercial", "Critérios de qualificação", "Roteiros", "Gestão do funil"],
-    indicators: ["Taxa de qualificação", "Propostas enviadas", "Taxa de fechamento"],
-  },
-  {
-    number: "08",
-    title: "Dados",
-    text: "Monitoramos indicadores para orientar decisões.",
-    result: "Crescimento contínuo",
-    icon: BarChart3,
-    objective: "Usar dados para decidir o que manter, corrigir ou escalar.",
-    deliveries: ["Dashboards", "KPIs", "Relatórios", "Rituais de análise"],
-    indicators: ["Receita", "Eficiência", "Evolução do funil"],
-  },
+  { number: "01", title: "Diagnóstico", text: "Identificamos os gargalos que impedem a empresa de crescer.", result: "Prioridades definidas", icon: ScanSearch, objective: "Entender o cenário antes de propor qualquer ação.", deliveries: ["Leitura do negócio", "Mapeamento de gargalos", "Análise de marketing e comercial", "Priorização de oportunidades"], indicators: ["Clareza de cenário", "Velocidade de decisão", "Foco de execução"] },
+  { number: "02", title: "Estratégia", text: "Transformamos objetivos em um plano claro de crescimento.", result: "Direção definida", icon: Compass, objective: "Definir onde concentrar esforço, investimento e energia.", deliveries: ["Direcionamento estratégico", "Definição de prioridades", "Plano de ação", "Metas e responsáveis"], indicators: ["Aderência ao plano", "Execução de prioridades", "Evolução dos objetivos"] },
+  { number: "03", title: "Marca", text: "Construímos posicionamentos que geram percepção e confiança.", result: "Autoridade", icon: Shapes, objective: "Tornar a empresa mais clara, relevante e valorizada pelo mercado.", deliveries: ["Posicionamento", "Narrativa", "Identidade", "Direção de comunicação"], indicators: ["Percepção de valor", "Consistência", "Autoridade"] },
+  { number: "04", title: "Conteúdo", text: "Produzimos comunicação alinhada aos objetivos do negócio.", result: "Relevância", icon: PenSquare, objective: "Transformar estratégia em comunicação capaz de educar, gerar desejo e apoiar vendas.", deliveries: ["Planejamento editorial", "Direção criativa", "Produção de conteúdo", "Campanhas"], indicators: ["Atenção qualificada", "Engajamento", "Demanda gerada"] },
+  { number: "05", title: "Aquisição", text: "Atraímos empresas com potencial para se tornarem clientes.", result: "Oportunidades", icon: Target, objective: "Criar demanda qualificada por meio dos canais adequados.", deliveries: ["Mídia paga", "Campanhas", "Landing pages", "Otimização de conversão"], indicators: ["Leads qualificados", "Custo por oportunidade", "Taxa de conversão"] },
+  { number: "06", title: "CRM", text: "Estruturamos processos para acompanhar cada oportunidade.", result: "Relacionamento", icon: Database, objective: "Organizar a jornada comercial para que oportunidades não se percam.", deliveries: ["Pipeline", "Automações", "Integrações", "Follow-up"], indicators: ["Tempo de resposta", "Conversão por etapa", "Receita no pipeline"] },
+  { number: "07", title: "Comercial", text: "Conectamos marketing ao processo de vendas.", result: "Conversão", icon: Handshake, objective: "Transformar oportunidades em negociações conduzidas com método.", deliveries: ["Processo comercial", "Critérios de qualificação", "Roteiros", "Gestão do funil"], indicators: ["Taxa de qualificação", "Propostas enviadas", "Taxa de fechamento"] },
+  { number: "08", title: "Dados", text: "Monitoramos indicadores para orientar decisões.", result: "Crescimento contínuo", icon: BarChart3, objective: "Usar dados para decidir o que manter, corrigir ou escalar.", deliveries: ["Dashboards", "KPIs", "Relatórios", "Rituais de análise"], indicators: ["Receita", "Eficiência", "Evolução do funil"] },
 ];
 
 const cases = [
@@ -134,7 +62,7 @@ function ArchitectureModal({ item, onClose }) {
 
 function Architecture() {
   const [active, setActive] = useState(null);
-  return <section id="arquitetura" className="section architecture"><div className="container"><Reveal className="section-head"><p className="eyebrow">Arquitetura ALT</p><h2>O crescimento acontece quando estratégia, marketing e comercial operam como um único sistema.</h2><p>A Arquitetura ALT integra todas as frentes responsáveis por transformar estratégia em oportunidades, relacionamento em conversão e marketing em crescimento.</p></Reveal><div className="architecture-grid">{architecture.map((item, index) => { const Icon = item.icon; return <Reveal key={item.title} delay={index * 0.035}><button className="architecture-card architecture-card-button" onClick={() => setActive(item)}><div className="architecture-card-top"><span>{item.number}</span><Icon size={28} strokeWidth={1.5} /></div><h3>{item.title}</h3><p>{item.text}</p><div className="architecture-card-result"><small>Resultado</small><strong>{item.result} <ArrowRight size={14} /></strong></div></button></Reveal>; })}</div></div><ArchitectureModal item={active} onClose={() => setActive(null)} /></section>;
+  return <section id="arquitetura" className="section architecture"><div className="container"><Reveal className="architecture-head"><div className="architecture-title"><p className="eyebrow">Arquitetura ALT</p><h2>Crescimento não acontece em áreas isoladas.</h2></div><div className="architecture-copy"><strong>Estratégia, marketing e comercial precisam operar como um único sistema.</strong><p>A Arquitetura ALT integra todas as frentes responsáveis por transformar estratégia em oportunidades, relacionamento em conversão e marketing em crescimento.</p></div></Reveal><div className="architecture-grid">{architecture.map((item, index) => { const Icon = item.icon; return <Reveal key={item.title} delay={index * 0.035}><button className="architecture-card architecture-card-button" onClick={() => setActive(item)}><div className="architecture-card-top"><span>{item.number}</span><Icon size={28} strokeWidth={1.5} /></div><h3>{item.title}</h3><p>{item.text}</p><div className="architecture-card-result"><small>Resultado</small><strong>{item.result} <ArrowRight size={14} /></strong></div></button></Reveal>; })}</div></div><ArchitectureModal item={active} onClose={() => setActive(null)} /></section>;
 }
 
 function Cases() {
