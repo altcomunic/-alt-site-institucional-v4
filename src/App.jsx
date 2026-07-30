@@ -65,11 +65,15 @@ function GrowthNetwork() {
     const y = ((event.clientY - rect.top) / rect.height) * 520;
     setPointer({ x, y });
     let nearest = null;
-    let min = 150;
-    networkNodes.forEach((node, index) => { const distance = Math.hypot(node.x - x, node.y - y); if (distance < min) { min = distance; nearest = index; } });
+    let min = 145;
+    networkNodes.forEach((node, index) => {
+      const distance = Math.hypot(node.x - x, node.y - y);
+      if (distance < min) { min = distance; nearest = index; }
+    });
     setActive(nearest);
   };
-  return <section className="growth-network" aria-label="Rede de crescimento ALT"><div className="container growth-network-layout"><Reveal className="growth-network-copy"><p className="eyebrow">Tudo está conectado</p><h2>Quando uma área evolui,<br />toda a operação responde.</h2><p>Aproxime o cursor da rede para explorar como estratégia, marketing e comercial se conectam até a receita.</p></Reveal><div className="growth-network-stage" onMouseMove={move} onMouseLeave={() => { setActive(null); setPointer({ x: 500, y: 260 }); }}><svg viewBox="0 0 1000 520" role="img" aria-label="Módulos da operação conectados"><defs><radialGradient id="cursorGlow"><stop offset="0%" stopColor="#f26a2e" stopOpacity=".16"/><stop offset="100%" stopColor="#f26a2e" stopOpacity="0"/></radialGradient></defs><circle cx={pointer.x} cy={pointer.y} r="175" fill="url(#cursorGlow)" className="network-cursor-glow" />{networkLinks.map(([from, to]) => { const highlighted = active === from || active === to; return <line key={`${from}-${to}`} x1={networkNodes[from].x} y1={networkNodes[from].y} x2={networkNodes[to].x} y2={networkNodes[to].y} className={highlighted ? "network-line active" : "network-line"} />; })}{networkNodes.map((node, index) => <g key={node.label} className={active === index ? "network-node active" : "network-node"}><circle cx={node.x} cy={node.y} r={active === index ? 9 : 6} /><circle cx={node.x} cy={node.y} r="19" className="network-node-halo" /><text x={node.x} y={node.y + (node.y < 200 ? -28 : 35)} textAnchor="middle">{node.label}</text></g>)}</svg><span className="growth-network-hint">Mova o cursor</span></div></div></section>;
+
+  return <section className="growth-network" aria-label="Rede de crescimento ALT" onMouseMove={move} onMouseLeave={() => { setActive(null); setPointer({ x: 500, y: 260 }); }}><svg className="growth-network-bg" viewBox="0 0 1000 520" role="img" aria-label="Módulos da operação conectados" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="cursorGlow"><stop offset="0%" stopColor="#f26a2e" stopOpacity=".12"/><stop offset="100%" stopColor="#f26a2e" stopOpacity="0"/></radialGradient></defs><circle cx={pointer.x} cy={pointer.y} r="175" fill="url(#cursorGlow)" className="network-cursor-glow" />{networkLinks.map(([from, to]) => { const highlighted = active === from || active === to; return <line key={`${from}-${to}`} x1={networkNodes[from].x} y1={networkNodes[from].y} x2={networkNodes[to].x} y2={networkNodes[to].y} className={highlighted ? "network-line active" : "network-line"} />; })}{networkNodes.map((node, index) => <g key={node.label} className={active === index ? "network-node active" : "network-node"}><circle cx={node.x} cy={node.y} r={active === index ? 8 : 5} /><circle cx={node.x} cy={node.y} r="18" className="network-node-halo" /><text x={node.x} y={node.y + (node.y < 200 ? -27 : 34)} textAnchor="middle">{node.label}</text></g>)}</svg><div className="growth-network-overlay" /><Reveal className="growth-network-center"><h2><span>Quando uma área evolui,</span><span>toda a operação responde.</span></h2></Reveal></section>;
 }
 
 function Cases() {
