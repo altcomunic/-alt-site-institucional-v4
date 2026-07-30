@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  BarChart3,
-  Compass,
-  Database,
-  Handshake,
-  Menu,
-  PenSquare,
-  ScanSearch,
-  Shapes,
-  Target,
-  X,
-} from "lucide-react";
+import { ArrowRight, BarChart3, Compass, Database, Handshake, Menu, PenSquare, ScanSearch, Shapes, Target, X } from "lucide-react";
 
 const logo = "https://raw.githubusercontent.com/altcomunic/alt-site-institucional-v3/main/public/LOGO.svg";
 const heroVideo = "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
@@ -34,11 +22,7 @@ const cases = [
   { name: "Grupo Saga", sector: "Automotivo", headline: "Marketing conectado à rotina real de vendas.", metric: "Conteúdo + performance", image: "https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1800&auto=format&fit=crop" },
 ];
 
-const insights = [
-  ["Estratégia", "Marketing não começa no post. Começa na direção."],
-  ["Performance", "Tráfego sem posicionamento acelera o erro."],
-  ["CRM", "O lead não se perde no anúncio. Ele se perde no processo."],
-];
+const insights = [["Estratégia", "Marketing não começa no post. Começa na direção."], ["Performance", "Tráfego sem posicionamento acelera o erro."], ["CRM", "O lead não se perde no anúncio. Ele se perde no processo."]];
 
 function Reveal({ children, delay = 0, className = "" }) {
   return <motion.div className={className} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
@@ -63,6 +47,29 @@ function ArchitectureModal({ item, onClose }) {
 function Architecture() {
   const [active, setActive] = useState(null);
   return <section id="arquitetura" className="section architecture"><div className="container"><Reveal className="architecture-head"><div className="architecture-title"><p className="eyebrow">Arquitetura ALT</p><h2>Crescimento não acontece em áreas isoladas.</h2></div><div className="architecture-copy"><strong>Estratégia, marketing e comercial precisam operar como um único sistema.</strong><p>A Arquitetura ALT integra todas as frentes responsáveis por transformar estratégia em oportunidades, relacionamento em conversão e marketing em crescimento.</p></div></Reveal><div className="architecture-grid">{architecture.map((item, index) => { const Icon = item.icon; return <Reveal key={item.title} delay={index * 0.035}><button className="architecture-card architecture-card-button" onClick={() => setActive(item)}><div className="architecture-card-top"><span>{item.number}</span><Icon size={28} strokeWidth={1.5} /></div><h3>{item.title}</h3><p>{item.text}</p><div className="architecture-card-result"><small>Resultado</small><strong>{item.result} <ArrowRight size={14} /></strong></div></button></Reveal>; })}</div></div><ArchitectureModal item={active} onClose={() => setActive(null)} /></section>;
+}
+
+const networkNodes = [
+  { label: "Diagnóstico", x: 135, y: 255 }, { label: "Estratégia", x: 315, y: 120 }, { label: "Marca", x: 315, y: 390 },
+  { label: "Aquisição", x: 515, y: 205 }, { label: "CRM", x: 515, y: 345 }, { label: "Comercial", x: 715, y: 205 },
+  { label: "Dados", x: 715, y: 345 }, { label: "Receita", x: 885, y: 255 },
+];
+const networkLinks = [[0,1],[0,2],[1,3],[1,4],[2,3],[2,4],[3,4],[3,5],[3,6],[4,5],[4,6],[5,6],[5,7],[6,7]];
+
+function GrowthNetwork() {
+  const [pointer, setPointer] = useState({ x: 500, y: 260 });
+  const [active, setActive] = useState(null);
+  const move = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 1000;
+    const y = ((event.clientY - rect.top) / rect.height) * 520;
+    setPointer({ x, y });
+    let nearest = null;
+    let min = 150;
+    networkNodes.forEach((node, index) => { const distance = Math.hypot(node.x - x, node.y - y); if (distance < min) { min = distance; nearest = index; } });
+    setActive(nearest);
+  };
+  return <section className="growth-network" aria-label="Rede de crescimento ALT"><div className="container growth-network-layout"><Reveal className="growth-network-copy"><p className="eyebrow">Tudo está conectado</p><h2>Quando uma área evolui,<br />toda a operação responde.</h2><p>Aproxime o cursor da rede para explorar como estratégia, marketing e comercial se conectam até a receita.</p></Reveal><div className="growth-network-stage" onMouseMove={move} onMouseLeave={() => { setActive(null); setPointer({ x: 500, y: 260 }); }}><svg viewBox="0 0 1000 520" role="img" aria-label="Módulos da operação conectados"><defs><radialGradient id="cursorGlow"><stop offset="0%" stopColor="#f26a2e" stopOpacity=".16"/><stop offset="100%" stopColor="#f26a2e" stopOpacity="0"/></radialGradient></defs><circle cx={pointer.x} cy={pointer.y} r="175" fill="url(#cursorGlow)" className="network-cursor-glow" />{networkLinks.map(([from, to]) => { const highlighted = active === from || active === to; return <line key={`${from}-${to}`} x1={networkNodes[from].x} y1={networkNodes[from].y} x2={networkNodes[to].x} y2={networkNodes[to].y} className={highlighted ? "network-line active" : "network-line"} />; })}{networkNodes.map((node, index) => <g key={node.label} className={active === index ? "network-node active" : "network-node"}><circle cx={node.x} cy={node.y} r={active === index ? 9 : 6} /><circle cx={node.x} cy={node.y} r="19" className="network-node-halo" /><text x={node.x} y={node.y + (node.y < 200 ? -28 : 35)} textAnchor="middle">{node.label}</text></g>)}</svg><span className="growth-network-hint">Mova o cursor</span></div></div></section>;
 }
 
 function Cases() {
@@ -98,5 +105,5 @@ function Footer() {
 
 export default function App() {
   useEffect(() => { document.documentElement.style.scrollBehavior = "smooth"; }, []);
-  return <><Navbar /><main><Hero /><Architecture /><Cases /><Operation /><Insights /><Contact /></main><Footer /></>;
+  return <><Navbar /><main><Hero /><Architecture /><GrowthNetwork /><Cases /><Operation /><Insights /><Contact /></main><Footer /></>;
 }
