@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart3, Compass, Database, Handshake, Menu, PenSquare, ScanSearch, Shapes, Target, X } from "lucide-react";
+import { sanityClient } from "./sanity/client";
+import { latestPostsQuery } from "./sanity/queries";
 
 const logo = "https://raw.githubusercontent.com/altcomunic/alt-site-institucional-v3/main/public/LOGO.svg";
 const heroVideo = "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
@@ -30,7 +32,7 @@ function Reveal({ children, delay = 0, className = "" }) {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const links = [["Arquitetura", "#arquitetura"], ["Cases", "#cases"], ["Operação", "#operacao"], ["Insights", "#insights"]];
+  const links = [["Arquitetura", "#arquitetura"], ["Cases", "#cases"], ["Operação", "#operacao"], ["Blog", "/blog"]];
   return <header className="navbar"><div className="container nav-inner"><a href="#home" className="brand"><img src={logo} alt="ALT Comunicação" /></a><nav className="nav-links">{links.map(([label, href]) => <a key={label} href={href}>{label}</a>)}<a href="#diagnostico" className="nav-cta">Diagnóstico</a></nav><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Abrir menu">{open ? <X size={20} /> : <Menu size={20} />}</button></div>{open && <div className="mobile-menu">{links.map(([label, href]) => <a key={label} href={href} onClick={() => setOpen(false)}>{label}</a>)}<a href="#diagnostico" onClick={() => setOpen(false)}>Diagnóstico</a></div>}</header>;
 }
 
@@ -86,7 +88,10 @@ function Operation() {
 }
 
 function Insights() {
-  return <section id="insights" className="section insights"><div className="container"><Reveal className="section-head"><p className="eyebrow">Leituras ALT</p><h2>Pensamento para empresas<br />em movimento.</h2></Reveal><div className="insight-grid">{insights.map(([tag, title], index) => <Reveal key={title} delay={index * 0.05}><article className="insight-card"><span>{tag}</span><h3>{title}</h3><a href="#insights">Ler análise <ArrowRight size={14} /></a></article></Reveal>)}</div></div></section>;
+  const [posts, setPosts] = useState([]);
+  useEffect(() => { sanityClient.fetch(latestPostsQuery).then(setPosts).catch(() => setPosts([])); }, []);
+  const cards = posts.length ? posts.map((post) => ({ tag: post.category || "Leituras ALT", title: post.title, href: `/blog/${post.slug}` })) : insights.map(([tag, title]) => ({ tag, title, href: "/blog" }));
+  return <section id="insights" className="section insights"><div className="container"><Reveal className="section-head"><p className="eyebrow">Leituras ALT</p><h2>Pensamento para empresas<br />em movimento.</h2></Reveal><div className="insight-grid">{cards.map((item, index) => <Reveal key={item.title} delay={index * 0.05}><article className="insight-card"><span>{item.tag}</span><h3>{item.title}</h3><a href={item.href}>Ler análise <ArrowRight size={14} /></a></article></Reveal>)}</div><a className="insights-all text-link" href="/blog">Ver todas as leituras <ArrowRight size={15} /></a></div></section>;
 }
 
 function Contact() {
