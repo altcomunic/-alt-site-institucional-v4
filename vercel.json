@@ -25,6 +25,10 @@
     }
   ],
   "rewrites": [
+    { "source": "/blog", "destination": "/index" },
+    { "source": "/blog/(.*)", "destination": "/index" },
+    { "source": "/studio", "destination": "/index" },
+    { "source": "/studio/(.*)", "destination": "/index" },
     { "source": "/sistema", "destination": "/#sistema" },
     { "source": "/metodo", "destination": "/#metodo" },
     { "source": "/cases", "destination": "/#cases" },
